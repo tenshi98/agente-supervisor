@@ -1,0 +1,16 @@
+{{title}}
+
+Leí los datos de {{identifier}} con poca seguridad{{#if reason}}: {{reason}}{{/if}}.
+{{#each items}}  {{this.label}}: {{this.value}}
+{{/each}}
+{{#if source}}Dónde lo dice: {{source}}{{#if context}} - "{{context}}"{{/if}}
+{{/if}}{{#if message_subject}}Correo: {{message_subject}} ({{message_sender}}, {{message_received}})
+{{/if}}{{#if also_count}}Afecta también: {{also_count}} cargas m&aacute;s con el mismo texto
+{{/if}}
+Responda este correo con:
+  1  -> está bien
+  0  -> ignorar esta carga
+  o escriba la corrección
+
+Responder en el enlace (un solo uso, vigente {{ttl_hours}} h):
+{{url}}

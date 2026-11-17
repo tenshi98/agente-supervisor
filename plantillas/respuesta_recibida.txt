@@ -1,0 +1,7 @@
+Registré su respuesta a la duda {{question_id}}: {{title}}
+
+Su respuesta: {{answer_text}}
+{{#if answered_by}}Registrada por: {{answered_by}}
+{{/if}}Qué pasa ahora: {{effect}}
+{{#if remembered}}Quedó guardada como equivalencia: "{{text}}" no se volverá a preguntar.
+{{/if}}

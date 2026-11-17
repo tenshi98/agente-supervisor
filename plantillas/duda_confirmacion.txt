@@ -1,0 +1,16 @@
+{{title}}
+
+El correo indica "{{text}}" como {{point_label}}{{#if identifier}} de {{identifier}}{{/if}}. Lo más parecido en el sistema es: {{proposal.name}}{{#if proposal.address}} ({{proposal.address}}){{/if}}.
+
+{{#if source}}Dónde lo dice: {{source}}{{#if context}} - "{{context}}"{{/if}}
+{{/if}}{{#if message_subject}}Correo: {{message_subject}} ({{message_sender}}, {{message_received}})
+{{/if}}{{#if also_count}}Afecta también: {{also_count}} cargas m&aacute;s con el mismo texto
+{{/if}}
+Responda este correo con una sola línea:
+  1   -> es este
+{{#if can_remember}}  1 R -> es este y recordar siempre
+{{/if}}  N   -> no es este
+  0   -> no es un lugar / ignorar
+
+Responder en el enlace (un solo uso, vigente {{ttl_hours}} h):
+{{url}}

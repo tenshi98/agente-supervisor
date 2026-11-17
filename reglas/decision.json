@@ -1,0 +1,109 @@
+{
+  "_comentario": "Reglas que aplica el agente en PHP (no la IA). Edite y guarde: se leen en cada corrida. Vocabulario en 00_nomenclatura.md.",
+  "prefiltro": {
+    "_comentario": "Antes de pagar tokens: si el correo no tiene ninguna señal (contenedor ISO válido, booking, despacho o una palabra clave) se descarta sin IA.",
+    "exigir_senal": true,
+    "palabras_clave": [
+      "retiro",
+      "retirar",
+      "entrega",
+      "entregar",
+      "devolucion",
+      "devolución",
+      "devolver",
+      "booking",
+      "contenedor",
+      "despacho",
+      "stacking",
+      "instruccion",
+      "instrucción",
+      "camion",
+      "camión",
+      "reserva",
+      "bl",
+      "nave"
+    ]
+  },
+  "tipos_que_se_procesan": [
+    "instruccion_transporte"
+  ],
+  "confianza": {
+    "minima": "media",
+    "niveles": {
+      "_comentario": "Nivel de decisión según la confianza: alta = automática, media = confirmación de un clic, baja = duda abierta.",
+      "alta": "automatica",
+      "media": "confirmacion",
+      "baja": "abierta"
+    }
+  },
+  "campos_obligatorios": {
+    "instruccion_transporte": [
+      "identificador",
+      "lugares.inicio"
+    ]
+  },
+  "_comentario_campos": "identificador = contenedor, booking o despacho (al menos uno). lugares.X exige al menos una mención. Otros: fechas.retiro, fechas.entrega, fechas.devolucion, lugares.cliente, lugares.final.",
+  "validaciones": {
+    "contenedor_iso6346": true,
+    "fechas_formato": true
+  },
+  "lugares": {
+    "similitud_minima_candidato": 55,
+    "max_candidatos": 4,
+    "solo_activos": true,
+    "cliente_excluye_categorias": [
+      "puerto",
+      "extraportuario",
+      "deposito"
+    ],
+    "umbral_exacto": 99,
+    "umbral_parecido": 90,
+    "ventaja_parecido": 8,
+    "umbral_propuesta": 75,
+    "_comentario": "La similitud la calcula el sistema externo (MCP catalogo_lugares). exacto: >= umbral_exacto y único; parecido: >= umbral_parecido con ventaja >= ventaja_parecido sobre el segundo; si no, la IA elige entre candidatos (>= similitud_minima_candidato)."
+  },
+  "dudas": {
+    "max_por_corrida": 8,
+    "max_por_dia": 30,
+    "una_duda_por_texto": true
+  },
+  "equivalencias": {
+    "recordar_genericos": false,
+    "contradicciones_para_revision": 3,
+    "_comentario": "Una respuesta equivocada guardada propaga errores: los textos genéricos nunca se recuerdan y una equivalencia contradicha por el sistema externo varias veces pasa a revisión."
+  },
+  "cruce": {
+    "_comentario": "Tarea sin IA (cron). La carga se cruza con el sistema externo pasados gracia_min minutos y hasta ventana_horas horas desde que llegó el correo.",
+    "gracia_min": 60,
+    "ventana_horas": 72,
+    "cada_min": 15,
+    "ventana_busqueda_dias": {
+      "antes": 20,
+      "despues": 40
+    },
+    "mismo_lugar_metros": 150,
+    "cuando_hace_falta": {
+      "_comentario": "Un lugar vacío en el sistema solo alerta cuando ya hace falta.",
+      "inicio": "siempre",
+      "cliente": "si_hay_tramos",
+      "final": "si_tramo_hacia_cliente"
+    },
+    "tramo_ejecutado_solo_resumen_diario": true
+  },
+  "avisos": {
+    "cada_min": 60,
+    "revalidar_antes_de_enviar": true,
+    "resumen_diario_hora": 19
+  },
+  "retencion": {
+    "dias_defecto": 90,
+    "_comentario": "Pasado este plazo se vacían el cuerpo y el texto de los adjuntos; quedan metadatos, cargas y decisiones."
+  },
+  "limites_ia": {
+    "max_caracteres_cuerpo": 6000,
+    "max_caracteres_por_adjunto": 4000,
+    "max_caracteres_total": 16000,
+    "max_originales_por_correo": 3,
+    "max_tokens_salida": 2000
+  }
+}

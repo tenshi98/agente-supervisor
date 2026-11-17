@@ -1,0 +1,16 @@
+Resumen diario - {{date}}
+
+Correos: {{totals.mails}} · Instrucciones: {{totals.instructions}} · Cargas: {{totals.cases}} · Automáticas: {{totals.automatic}}
+Dudas enviadas: {{totals.questions_sent}} · Dudas pendientes: {{totals.questions_pending}}
+Avisos enviados: {{totals.alerts_sent}} · Descartados al revalidar: {{totals.revalidated}}
+
+Diferencias en tramos ya ejecutados (informativas; el plan cambió después del correo):
+{{#if informatives}}{{#each informatives}}  - {{this.identifier}}{{#if this.order_id}} (orden {{this.order_id}}){{/if}} · {{this.point_label}}: correo "{{this.mail_value}}" / sistema "{{this.system_value}}" · fuente: {{this.source}}{{#if this.note}} · {{this.note}}{{/if}}
+{{/each}}{{else}}  Sin diferencias de este tipo hoy.
+{{/if}}
+Dudas pendientes:
+{{#if pending}}{{#each pending}}  - {{this.id}} {{this.title}} ({{this.age}}): {{this.url}}
+{{/each}}{{else}}  No hay dudas pendientes.
+{{/if}}
+Costos: IA US$ {{ai.cost_usd}} en {{ai.calls}} llamadas ({{ai.tokens_in}} / {{ai.tokens_out}} tokens). MCP: {{mcp.calls}} consultas por lote para {{mcp.items}} elementos.
+Equivalencias nuevas del día: {{totals.aliases_new}}

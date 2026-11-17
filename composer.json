@@ -1,0 +1,39 @@
+{
+    "name": "gotruck/agente-supervisor",
+    "description": "Agente supervisor de correos de transporte (PHP)",
+    "type": "project",
+    "license": "proprietary",
+    "require": {
+        "php": ">=8.3",
+        "ext-curl": "*",
+        "ext-intl": "*",
+        "ext-mbstring": "*",
+        "ext-pdo": "*",
+        "ext-sodium": "*",
+        "google/apiclient": "^2.15",
+        "smalot/pdfparser": "^2.10",
+        "symfony/dotenv": "^7.0",
+        "thiagoalessio/tesseract_ocr": "^2.13",
+        "webklex/php-imap": "^6.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Agente\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Agente\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "scripts": {
+        "test": "phpunit"
+    }
+}

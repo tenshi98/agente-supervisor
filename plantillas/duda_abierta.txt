@@ -1,0 +1,20 @@
+{{title}}
+
+El correo menciona "{{text}}" como {{point_label}}{{#if identifier}} de {{identifier}}{{/if}}, pero no lo reconozco con certeza ni hay una decisión anterior para ese texto.
+
+{{#if source}}Dónde lo dice: {{source}}{{#if context}} - "{{context}}"{{/if}}
+{{/if}}{{#if message_subject}}Correo: {{message_subject}} ({{message_sender}}, {{message_received}})
+{{/if}}{{#if also_count}}Afecta también: {{also_count}} cargas m&aacute;s con el mismo texto
+{{/if}}
+{{#if candidates}}Opciones:
+{{#each candidates}}  {{this.n}}) {{this.name}}{{#if this.address}} - {{this.address}}{{/if}}{{#if this.badge}} [{{this.badge}}]{{/if}}
+{{/each}}{{else}}No encontré ningún lugar parecido en el catálogo.
+{{/if}}
+Responda este correo con una sola línea:
+  <n>   -> la opción elegida{{#if can_remember}} (agregue R para recordar: "1 R"){{/if}}
+  N     -> no está en el catálogo
+  0     -> no es un lugar / ignorar
+  o escriba el nombre del lugar
+
+Responder en el enlace (un solo uso, vigente {{ttl_hours}} h):
+{{url}}

@@ -1,0 +1,18 @@
+Resumen por hora - {{date}} {{hour}}
+{{total}} cargas por revisar (Sin orden: {{counts.falta_en_sistema}} · Falta cargar: {{counts.lugar_vacio}} · No coincide: {{counts.distinto}})
+
+Qué hacer:
+  Sin orden   -> crear la orden en el sistema con los datos del correo.
+  Falta cargar -> cargar el lugar indicado en la orden existente.
+  No coincide -> revisar la orden; si el correo es lo vigente, corregir el lugar.
+
+{{#each alerts}}{{@index1}}) [{{this.badge}}] {{this.identifier}}{{#if this.order_id}} (orden {{this.order_id}}){{/if}}
+   Qué pasó: {{this.what_happened}}
+   Punto: {{this.point_label}}
+{{#if this.mail_value}}   Dice el correo: {{this.mail_value}}
+{{/if}}{{#if this.system_value}}   Dice el sistema: {{this.system_value}}
+{{/if}}   De dónde sale el dato: {{this.source}}
+   Qué hacer: {{this.what_to_do}}
+   ¿Útil? Sí: {{this.feedback_ok_url}}  No: {{this.feedback_no_url}}
+
+{{/each}}Cada aviso se revalida justo antes de enviarse: si operaciones ya cargó el dato, no aparece aquí.

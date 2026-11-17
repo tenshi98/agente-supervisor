@@ -1,0 +1,84 @@
+{
+  "_comentario": "Qué acción genera cada decisión. Editable: se lee en cada corrida. 'acciones' usa: descartar, guardar_caso, encolar_cruce, crear_duda, guardar_equivalencia, reprocesar_pendientes, ignorar_caso, crear_aviso, solo_resumen_diario, descartar_aviso, ninguna, diferir_duda. 'canal': duda = al momento; aviso = resumen por hora; resumen = diario. Vocabulario en 00_nomenclatura.md.",
+
+  "decisiones": {
+    "descartar": {
+      "cuando": "remitente fuera, sin señal, o la IA dice que no es instrucción",
+      "acciones": ["descartar"], "canal": null, "usa_ia": false
+    },
+    "automatica": {
+      "cuando": "confianza alta: equivalencia, genérico, exacto o marca",
+      "acciones": ["guardar_caso", "encolar_cruce"], "canal": null, "usa_ia": false
+    },
+    "confirmacion": {
+      "cuando": "confianza media",
+      "acciones": ["guardar_caso", "crear_duda"], "plantilla": "duda_confirmacion", "canal": "duda", "usa_ia": false
+    },
+    "abierta": {
+      "cuando": "confianza baja o ningún candidato",
+      "acciones": ["guardar_caso", "crear_duda"], "plantilla": "duda_abierta", "canal": "duda", "usa_ia": false
+    },
+    "carga_dudosa": {
+      "cuando": "la IA declaró confianza baja sobre la carga",
+      "acciones": ["guardar_caso", "crear_duda"], "plantilla": "duda_carga", "canal": "duda", "usa_ia": false
+    },
+    "faltante": {
+      "cuando": "falta identificador o un campo obligatorio",
+      "acciones": ["guardar_caso", "crear_duda"], "plantilla": "duda_faltante", "canal": "duda", "usa_ia": false
+    },
+    "dato_invalido": {
+      "cuando": "contenedor con dígito verificador erróneo o fecha con formato inválido",
+      "acciones": ["guardar_caso", "crear_duda"], "plantilla": "duda_faltante", "canal": "duda", "usa_ia": false
+    },
+    "conflicto": {
+      "cuando": "una equivalencia guardada contradice una regla",
+      "acciones": ["guardar_caso", "crear_duda"], "plantilla": "duda_conflicto", "canal": "duda", "usa_ia": false
+    },
+    "limite_dudas": {
+      "cuando": "se superó el tope de dudas por corrida o por día",
+      "acciones": ["diferir_duda"], "canal": null, "usa_ia": false
+    },
+
+    "respuesta_confirmar": {
+      "cuando": "el destinatario confirma una duda de un clic",
+      "acciones": ["guardar_equivalencia", "reprocesar_pendientes"], "solo_si_recordar": true, "canal": null, "usa_ia": false
+    },
+    "respuesta_valor": {
+      "cuando": "el destinatario elige un candidato o escribe un valor",
+      "acciones": ["guardar_equivalencia", "reprocesar_pendientes"], "solo_si_recordar": true, "canal": null, "usa_ia": false
+    },
+    "respuesta_ignorar": {
+      "cuando": "el destinatario ignora el dato o la carga",
+      "acciones": ["ignorar_caso", "reprocesar_pendientes"], "canal": null, "usa_ia": false
+    },
+
+    "cruce_sin_orden": {
+      "cuando": "pasada la gracia no existe orden para la carga",
+      "acciones": ["crear_aviso"], "tipo_aviso": "falta_en_sistema", "canal": "aviso", "usa_ia": false
+    },
+    "cruce_lugar_vacio": {
+      "cuando": "el lugar está vacío en el sistema y ya hace falta",
+      "acciones": ["crear_aviso"], "tipo_aviso": "lugar_vacio", "canal": "aviso", "usa_ia": false
+    },
+    "cruce_distinto": {
+      "cuando": "el lugar difiere y el tramo aún no se ejecuta",
+      "acciones": ["crear_aviso"], "tipo_aviso": "distinto", "canal": "aviso", "usa_ia": false
+    },
+    "cruce_distinto_ejecutado": {
+      "cuando": "el lugar difiere pero el camión ya ejecutó el tramo (cambio de plan)",
+      "acciones": ["solo_resumen_diario"], "tipo_aviso": "distinto", "canal": "resumen", "usa_ia": false
+    },
+    "cruce_ok": {
+      "cuando": "coincide, está en ruta/almacenaje o aún no hace falta",
+      "acciones": ["ninguna"], "canal": null, "usa_ia": false
+    },
+    "cruce_sin_verificar": {
+      "cuando": "no se puede verificar (genérico, sin dato, esperando duda)",
+      "acciones": ["ninguna"], "canal": null, "usa_ia": false
+    },
+    "revalidado": {
+      "cuando": "justo antes de enviar, el sistema ya trae el dato",
+      "acciones": ["descartar_aviso"], "silencioso": true, "canal": null, "usa_ia": false
+    }
+  }
+}

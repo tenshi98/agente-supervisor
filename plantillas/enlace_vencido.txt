@@ -1,0 +1,4 @@
+{{title}}
+
+El enlace de la duda {{question_id}} venció el {{expired_at}} sin respuesta. Este es uno nuevo (un solo uso, vigente {{ttl_hours}} h):
+{{url}}

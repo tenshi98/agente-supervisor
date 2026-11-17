@@ -1,0 +1,1 @@
+Resumen diario {{date}}: {{totals.cases}} cargas, {{totals.alerts_sent}} avisos

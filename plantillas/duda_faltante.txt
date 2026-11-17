@@ -1,0 +1,16 @@
+{{title}}
+
+{{lead}}
+Dato: {{field_label}}
+{{#if identifier}}Carga: {{identifier}}
+{{/if}}{{#if text}}Lo que dice el correo: {{text}}
+{{/if}}{{#if source}}Dónde lo dice: {{source}}{{#if context}} - "{{context}}"{{/if}}
+{{/if}}{{#if message_subject}}Correo: {{message_subject}} ({{message_sender}}, {{message_received}})
+{{/if}}{{#if also_count}}Afecta también: {{also_count}} cargas m&aacute;s con el mismo texto
+{{/if}}
+Responda este correo con:
+  0  -> ignorar este punto
+  o escriba el dato correcto
+
+Responder en el enlace (un solo uso, vigente {{ttl_hours}} h):
+{{url}}

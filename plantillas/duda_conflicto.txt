@@ -1,0 +1,15 @@
+{{title}}
+
+Para "{{text}}" (usado como {{point_label}}) hay dos respuestas distintas: una decisión guardada antes y una regla actual. Elija cuál vale.
+
+{{#if source}}Dónde lo dice: {{source}}{{#if context}} - "{{context}}"{{/if}}
+{{/if}}{{#if message_subject}}Correo: {{message_subject}} ({{message_sender}}, {{message_received}})
+{{/if}}{{#if also_count}}Afecta también: {{also_count}} cargas m&aacute;s con el mismo texto
+{{/if}}
+Opciones:
+{{#each options}}  {{this.n}}) {{this.name}} ({{this.origin}})
+{{/each}}
+Responda este correo con el número de la opción, 0 para ignorar, o escriba el nombre del lugar.
+
+Responder en el enlace (un solo uso, vigente {{ttl_hours}} h):
+{{url}}

@@ -1,0 +1,1 @@
+Respuesta recibida: [Duda {{question_id}}·{{token}}] {{title}}

@@ -1,0 +1,9 @@
+<!DOCTYPE html><html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{{subject}}</title></head>
+<body style="margin:0;padding:0;background:#f4f5f7">
+{{#if preheader}}<span style="display:none!important;visibility:hidden;opacity:0;height:0;width:0;overflow:hidden">{{preheader}}</span>{{/if}}
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#f4f5f7"><tr><td align="center" style="padding:16px 8px">
+<table role="presentation" width="700" cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff" style="width:100%;max-width:700px;border:1px solid #cccccc;border-radius:10px;overflow:hidden">
+<tr><td bgcolor="#1d3c8b" style="padding:10px 24px;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:bold;letter-spacing:1px;color:#ffffff;text-transform:uppercase">{{#if brand_name}}{{brand_name}}{{else}}Agente supervisor{{/if}}{{#if dry_run}} <span style="float:right;background:#ffffff;color:#1d3c8b;padding:2px 8px;border-radius:3px;font-size:10px">PRUEBA (DRY RUN)</span>{{/if}}</td></tr>
+<tr><td style="padding:24px">{{{content}}}</td></tr>
+<tr><td bgcolor="#f9fafb" style="padding:14px 24px;border-top:1px solid #e5e7eb;font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#6b7280;line-height:1.5">Mensaje generado autom&aacute;ticamente por el agente supervisor.{{#if brand_footer}}<br>{{brand_footer}}{{/if}}</td></tr>
+</table></td></tr></table></body></html>
